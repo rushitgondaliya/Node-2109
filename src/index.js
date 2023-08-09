@@ -1,4 +1,4 @@
-const { connectDB } = require("./config/config");
+const { connectDB } = require("./db/dbconnection");
 const config = require("./config/config");
 
 const express = require("express")
