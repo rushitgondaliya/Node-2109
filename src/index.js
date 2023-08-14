@@ -1,12 +1,19 @@
-const { connectDB } = require("./db/dbconnection");
+const express = require("express");
+const http = require("http");
+const { connectDB } = require("./db/dbConnection");
+const routes = require("./routes/v1");
 const config = require("./config/config");
 
-const express = require("express")
-const app = express()
-app.listen(8080,console.log('ok'));
+const app = express();
 
-// var http = require('http');
-// http.createServer(function(req , res){
-//     res.write('rushit');
-//     res.end();
-// }).listen(8080);
+app.use("/v1", routes);
+
+/** Database connection */
+connectDB()
+
+/** create server using http */
+const server = http.createServer(app);
+
+server.listen(config.port, () => {
+  console.log("server listning port number 3000!");
+});
