@@ -1,13 +1,30 @@
+const express= require('express')
+const http=  require('http');
+const bodyParser=require('body-parser')
 const { connectDB } = require("./db/dbconnection");
-const config = require("./config/config");
+const routes = require("./routes/v1");
+const config = require("./config/config")
 
-const express = require("express")
 const app = express()
-app.listen(8080,console.log('ok'));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.json());
+
+app.use("/v1", routes);
 
 
-// var http = require('http');
-// http.createServer(function(req , res){
-//     res.write('rushit');
+connectDB();
+
+
+const server = http.createServer(app);
+
+server.listen(config.port, () => {
+  console.log("server listning port number 8080!");
+});
+
+// http.createServer(function(req,res){
+//     res.write("hello wold");
+//     console.log('okk')
 //     res.end();
-// }).listen(8080);
+// }).listen(8080,console.log('okk'))
