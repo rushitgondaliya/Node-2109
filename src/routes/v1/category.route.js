@@ -1,23 +1,40 @@
 const express = require("express");
-// const { userValidation } = require("../../validations");
+const { categoryValidation } = require("../../validations");
 const { categoryController } = require("../../controllers");
-// const validate = require("../../middlewares/validation");
+// const validate = require("../../middlewares/validate");
 
 const router = express.Router();
 
-/** create user */
+/** create category */
 router.post(
   "/create-category",
-  // validate(userValidation.createUser),
+  // validate(categoryValidation.createCategory),
   categoryController.createCategory
 );
 
+/** Get categort list */
+router.get(
+  "/list",
+  // validate(categortValidation.getcategortList),
+  categoryController.getCategoryList
+);
 
-/** Get user list */
-// router.get(
-//   "/list",
-//   // validate(userValidation.getUserList),
-//   userController.getUserList
-// );
+router.get(
+  "/get-details/:categoryId",
+  // validate(categoryValidation.getDetails),
+  categoryController.getCategoryDetails
+);
 
+router.put(
+  "/update-details/:categoryId",
+  // validate(categoryValidation.updateDetails),
+  categoryController.updateDetails
+);
+
+/** Delete category */
+router.delete(
+  "/delete-category/:categoryId",
+  // validate(categoryValidation.getDetails),
+  categoryController.deleteCategory
+);
 module.exports = router;

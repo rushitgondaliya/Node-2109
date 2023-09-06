@@ -1,14 +1,13 @@
-const joi =require("joi")
+const Joi = require("joi");
 
-/** create user */
+/** create category */
 const createCategory = {
-    body: joi.object().keys({
-      category_name: joi.string().required().trim(),
-      category_decs: joi.string().required().trim(),
-      is_active: joi.string().required().trim(),
-    }),
-  };
-
-  module.exports = {
-    createCategory
-  };
+  body: Joi.object().keys({
+    category_name: Joi.string().required().trim(),
+    category_desc: Joi.string().required().trim(),
+    status: Joi.boolean().required(),
+  }),
+};
+module.exports = {
+  createCategory,
+};

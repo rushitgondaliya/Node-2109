@@ -1,15 +1,15 @@
-const joi =require("joi")
+const Joi = require("joi");
 
 /** create user */
 const createUser = {
-    body: joi.object().keys({
-      first_name: joi.string().required().trim(),
-      last_name: joi.string().required().trim(),
-      email: joi.string().required().trim(),
-      password: joi.string().required().trim(),
-    }),
-  };
-
-  module.exports = {
-    createUser
-  };
+  body: Joi.object().keys({
+    first_name: Joi.string().required().trim(),
+    last_name: Joi.string().required().trim(),
+    email: Joi.string().required().trim(),
+    password: Joi.string().required().trim(),
+    address: Joi.string().required().trim()
+  }),
+};
+module.exports = {
+  createUser,
+};
